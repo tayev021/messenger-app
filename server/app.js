@@ -5,6 +5,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 
+import { userRouter } from './routes/userRoutes.js';
 import { AppError } from './utils/AppError.js';
 import { globalErrorHandler } from './controllers/errorController.js';
 
@@ -17,7 +18,9 @@ app.use(express.json()); // body parser
 app.use(cookieParser());
 
 // ROUTES
+app.use('/api/v1/users', userRouter);
 
+// page not found
 app.all('/{*any}', function (req, res, next) {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
