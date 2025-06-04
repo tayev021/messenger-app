@@ -59,7 +59,7 @@ const ListItem = styled.li`
   }
 `;
 
-function Sidebar() {
+export function Sidebar() {
   const { isShowSidebar } = useShowSidebarContext();
 
   return (
@@ -94,5 +94,3 @@ function Sidebar() {
     </StyledSidebar>
   );
 }
-
-export { Sidebar };

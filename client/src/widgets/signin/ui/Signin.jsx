@@ -70,7 +70,7 @@ const Button = styled.button`
   }
 `;
 
-function Signin() {
+export function Signin() {
   const [email, setEmail] = useState('admin@gmail.com');
   const [password, setPassword] = useState('11111111');
   const { isLoading, signin } = useSignin();
@@ -112,5 +112,3 @@ function Signin() {
     </Form>
   );
 }
-
-export { Signin };
