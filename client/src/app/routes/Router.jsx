@@ -4,6 +4,7 @@ import ProtectedRoute from './ProtectedRoute';
 import AppLayout from '../layouts/AppLayout';
 import { HomePage } from '../../pages/home';
 import { SigninPage } from '../../pages/signin';
+import HideRoute from './HideRoute';
 import { PageNotFound } from '../../pages/pageNotFound';
 
 export default function Router() {
@@ -19,7 +20,9 @@ export default function Router() {
         >
           <Route index element={<HomePage />} />
         </Route>
-        <Route path="signin" element={<SigninPage />} />
+        <Route element={<HideRoute />}>
+          <Route path="signin" element={<SigninPage />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
