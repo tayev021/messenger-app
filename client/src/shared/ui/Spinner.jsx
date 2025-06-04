@@ -16,8 +16,13 @@ const rotate = keyframes`
   }
 `;
 
+const rotorSizes = {
+  large: '9rem',
+  medium: '6.4rem',
+};
+
 const Rotor = styled.div`
-  width: 6.4rem;
+  width: ${(props) => rotorSizes[props.$size]};
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(farthest-side, var(--color-sky-600) 94%, #0000)
@@ -28,10 +33,10 @@ const Rotor = styled.div`
   animation: ${rotate} 1.5s infinite linear;
 `;
 
-export default function Spinner() {
+export default function Spinner({ size = 'medium' }) {
   return (
     <Container>
-      <Rotor />
+      <Rotor $size={size} />
     </Container>
   );
 }
