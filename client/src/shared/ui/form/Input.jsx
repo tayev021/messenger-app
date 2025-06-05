@@ -1,0 +1,13 @@
+import styled from 'styled-components';
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 0.6rem 1.2rem 0.6rem 5rem;
+  border: 2px solid var(--color-sky-400);
+  border-radius: 99rem;
+  box-shadow: var(--box-shadow-smallest);
+
+  &::placeholder {
+    color: var(--color-grey-400);
+  }
+`;
