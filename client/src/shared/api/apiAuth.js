@@ -19,6 +19,25 @@ async function signin({ email, password }) {
   return user;
 }
 
+async function signup({ name, surname, email, password }) {
+  const response = await fetch(`${API_URL}/users/signup`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ name, surname, email, password }),
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  const user = json.data.user;
+
+  return user;
+}
+
 async function getCurrentUser() {
   const response = await fetch(`${API_URL}/users/me`, {
     credentials: 'include',
@@ -37,4 +56,4 @@ async function getCurrentUser() {
   return user;
 }
 
-export { signin, getCurrentUser };
+export { signin, signup, getCurrentUser };
