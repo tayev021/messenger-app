@@ -1,5 +1,5 @@
 function isValidName(name) {
-  return /^[a-z]{2,}$/i.test(name);
+  return /^[A-Z]{1}[a-z]{1,}$/i.test(name);
 }
 
 function isValidEmail(email) {
