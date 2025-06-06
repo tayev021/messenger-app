@@ -5,8 +5,8 @@ import { catchAsyncError } from '../utils/catchAsyncError.js';
 import { User } from '../models/userModelPlaceholder.js';
 import { AppError } from '../utils/AppError.js';
 
-function signToken(key) {
-  return jwt.sign({ key }, process.env.JWT_SECRET, {
+function signToken(id) {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 }
@@ -23,7 +23,7 @@ function getCookieOptions() {
 }
 
 function sendToken(user, statusCode, res) {
-  const token = signToken(user.email);
+  const token = signToken(user.id);
   const cookieOptions = getCookieOptions();
 
   // hide password from Signup
@@ -55,7 +55,7 @@ const signin = catchAsyncError(async function (req, res, next) {
     return next(new AppError('Please provide email and password!', 400));
   }
 
-  const user = User.find(email);
+  const user = User.findByEmail(email);
 
   if (!user || !(await User.isCorrectPassword(password, user.password || ''))) {
     return next(new AppError('Wrong email or password!', 401));
@@ -87,7 +87,7 @@ const protect = catchAsyncError(async function (req, res, next) {
   const decoded = await pify(jwt.verify)(token, process.env.JWT_SECRET);
 
   // user exist?
-  const user = await User.find(decoded.key);
+  const user = await User.findById(decoded.id);
 
   if (!user) {
     return next(
