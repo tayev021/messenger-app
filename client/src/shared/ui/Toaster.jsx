@@ -1,6 +1,6 @@
 import { Toaster as ToasterAPI } from 'react-hot-toast';
 
-export default function Toaster() {
+export function Toaster() {
   return (
     <ToasterAPI
       position="top-center"

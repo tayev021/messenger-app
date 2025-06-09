@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getMe } from '../../api/apiAuth';
 
-function useUser() {
+export function useUser() {
   const {
     isLoading,
     data: user,
@@ -16,5 +16,3 @@ function useUser() {
 
   return { isLoading, user, isError, error };
 }
-
-export { useUser };

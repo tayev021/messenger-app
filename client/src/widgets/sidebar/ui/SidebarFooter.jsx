@@ -34,7 +34,7 @@ const TelegramLink = styled.a`
   }
 `;
 
-export default function SidebarFooter() {
+export function SidebarFooter() {
   return (
     <Footer>
       <ToggleShowSidebar />

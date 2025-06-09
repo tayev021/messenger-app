@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import { HiArrowLeft } from 'react-icons/hi2';
 
-import Background from '../../../shared/ui/Background';
+import { Background } from '../../../shared/ui/Background';
 
 const StyledPageNotFound = styled.div`
   max-width: 35rem;

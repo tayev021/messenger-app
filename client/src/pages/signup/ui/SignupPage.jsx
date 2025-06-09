@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Background from '../../../shared/ui/Background';
+import { Background } from '../../../shared/ui/Background';
 import { Signup } from '../../../widgets/signup';
 
 const StyledSignupPage = styled(Background)`

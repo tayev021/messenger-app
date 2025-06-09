@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { useConversations } from '../../../../shared/lib/hooks/useConversations';
-import Spinner from '../../../../shared/ui/Spinner';
+import { Spinner } from '../../../../shared/ui/Spinner';
 import { Conversation } from './Conversation';
 
 const List = styled.ul`

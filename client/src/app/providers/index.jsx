@@ -5,7 +5,7 @@ import { queryClient } from '../../shared/api/queryClient';
 import { ShowSidebarProvider } from './ShowSidebarProvider';
 import { SearchConversationsProvider } from './SearchConversationsProvider';
 
-export default function Providers({ children }) {
+export function Providers({ children }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ShowSidebarProvider>

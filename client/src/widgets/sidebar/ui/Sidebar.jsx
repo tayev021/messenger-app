@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import SidebarHeader from './SidebarHeader';
-import SidebarFooter from './SidebarFooter';
+import { SidebarHeader } from './SidebarHeader';
+import { SidebarFooter } from './SidebarFooter';
 
 import { useShowSidebarContext } from '../../../shared/lib/hooks/useShowSidebarContext';
 import { ConversationsList } from './conversations/ConversationsList';

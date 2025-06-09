@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Outlet } from 'react-router';
 
 import { Sidebar } from '../../widgets/sidebar';
-import Background from '../../shared/ui/Background';
+import { Background } from '../../shared/ui/Background';
 
 const StyledAppLayout = styled.div`
   height: 100vh;
@@ -11,7 +11,7 @@ const StyledAppLayout = styled.div`
   grid-template-rows: 1fr;
 `;
 
-export default function AppLayout() {
+export function AppLayout() {
   return (
     <StyledAppLayout>
       <Sidebar />

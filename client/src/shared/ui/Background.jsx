@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Background = styled.div`
+export const Background = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
@@ -30,5 +30,3 @@ const Background = styled.div`
     z-index: -1;
   }
 `;
-
-export default Background;

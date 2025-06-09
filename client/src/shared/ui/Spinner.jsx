@@ -33,7 +33,7 @@ const Rotor = styled.div`
   animation: ${rotate} 1.5s infinite linear;
 `;
 
-export default function Spinner({ size = 'medium' }) {
+export function Spinner({ size = 'medium' }) {
   return (
     <Container>
       <Rotor $size={size} />

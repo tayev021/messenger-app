@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useUser } from '../../shared/lib/hooks/useUser';
 import { Outlet, useNavigate } from 'react-router';
 
-import Spinner from '../../shared/ui/Spinner';
+import { Spinner } from '../../shared/ui/Spinner';
 
-export default function HideRoute() {
+export function HideRoute() {
   const navigate = useNavigate();
   const { isLoading, user } = useUser();
 

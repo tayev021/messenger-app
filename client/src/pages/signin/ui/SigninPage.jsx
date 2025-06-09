@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router';
 
-import Background from '../../../shared/ui/Background';
+import { Background } from '../../../shared/ui/Background';
 import { Signin } from '../../../widgets/signin';
 
 const StyledSigninPage = styled(Background)`

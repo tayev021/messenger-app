@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
 :root {
   // color-zinc
   --color-grey-0: #ffffff;
@@ -144,5 +144,3 @@ img {
   max-width: 100%;
 }
 `;
-
-export default GlobalStyles;

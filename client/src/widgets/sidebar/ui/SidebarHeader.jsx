@@ -24,7 +24,7 @@ const MenuBox = styled.div`
   }
 `;
 
-export default function SidebarHeader() {
+export function SidebarHeader() {
   return (
     <Header>
       <MenuBox>

@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 
-import ProtectedRoute from './ProtectedRoute';
-import AppLayout from '../layouts/AppLayout';
+import { ProtectedRoute } from './ProtectedRoute';
+import { AppLayout } from '../layouts/AppLayout';
 import { HomePage } from '../../pages/home';
-import HideRoute from './HideRoute';
+import { HideRoute } from './HideRoute';
 import { SigninPage } from '../../pages/signin';
 import { SignupPage } from '../../pages/signup';
 import { PageNotFound } from '../../pages/pageNotFound';
 
-export default function Router() {
+export function Router() {
   return (
     <BrowserRouter>
       <Routes>
