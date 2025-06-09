@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 
 import { userRouter } from './routes/userRoutes.js';
+import { conversationRouter } from './routes/conversationRoutes.js';
 import { AppError } from './utils/AppError.js';
 import { globalErrorHandler } from './controllers/errorController.js';
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 // ROUTES
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/conversations', conversationRouter);
 
 // page not found
 app.all('/{*any}', function (req, res, next) {
