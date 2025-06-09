@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getCurrentUser } from '../../api/apiAuth';
+import { getMe } from '../../api/apiAuth';
 
 function useUser() {
   const {
@@ -10,7 +10,7 @@ function useUser() {
     error,
   } = useQuery({
     queryKey: ['user'],
-    queryFn: getCurrentUser,
+    queryFn: getMe,
     retry: false,
   });
 

@@ -38,7 +38,7 @@ async function signup({ name, surname, email, password }) {
   return user;
 }
 
-async function getCurrentUser() {
+async function getMe() {
   const response = await fetch(`${API_URL}/users/me`, {
     credentials: 'include',
   });
@@ -56,4 +56,4 @@ async function getCurrentUser() {
   return user;
 }
 
-export { signin, signup, getCurrentUser };
+export { signin, signup, getMe };
