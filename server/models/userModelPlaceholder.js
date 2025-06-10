@@ -20,7 +20,7 @@ class UserModelPlaceholder {
 
   findByEmail(email) {
     let user = Object.values(this.users).find((user) => user.email === email);
-    return user ? user : null;
+    return user ? { ...user } : null;
   }
 
   async isCorrectPassword(password, encryptedPassword) {
