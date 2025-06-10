@@ -78,8 +78,7 @@ const protect = catchAsyncError(async function (req, res, next) {
 
   if (!token) {
     return next(
-      new AppError('You are not signed in! Please sign in to get access.'),
-      401
+      new AppError('You are not signed in! Please sign in to get access.', 401)
     );
   }
 
@@ -87,12 +86,11 @@ const protect = catchAsyncError(async function (req, res, next) {
   const decoded = await pify(jwt.verify)(token, process.env.JWT_SECRET);
 
   // user exist?
-  const user = await User.findById(decoded.id);
+  const user = { ...(await User.findById(decoded.id)) };
 
   if (!user) {
     return next(
-      new AppError('This token belonging to user which does not exist.'),
-      401
+      new AppError('This token belonging to user which does not exist.', 401)
     );
   }
 
