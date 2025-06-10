@@ -12,6 +12,9 @@ export function useUser() {
     queryKey: ['user'],
     queryFn: getMe,
     retry: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   return { isLoading, user, isError, error };
