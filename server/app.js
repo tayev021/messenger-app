@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 
 import { userRouter } from './routes/userRoutes.js';
 import { conversationRouter } from './routes/conversationRoutes.js';
+import { chatRouter } from './routes/chatRoutes.js';
 import { AppError } from './utils/AppError.js';
 import { globalErrorHandler } from './controllers/errorController.js';
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 // ROUTES
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/conversations', conversationRouter);
+app.use('/api/v1/chats', chatRouter);
 
 // page not found
 app.all('/{*any}', function (req, res, next) {
