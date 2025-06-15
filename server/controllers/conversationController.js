@@ -14,6 +14,7 @@ function getConversations(req, res) {
       partnerId,
       partnerName: partner.name,
       partnerSurname: partner.surname,
+      unwatched: conversation.unwatched[user.id],
       lastMessage: conversation.lastMessage,
     };
   });
