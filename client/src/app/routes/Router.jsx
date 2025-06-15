@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import { ProtectedRoute } from './ProtectedRoute';
 import { AppLayout } from '../layouts/AppLayout';
 import { HomePage } from '../../pages/home';
+import { ChatPage } from '../../pages/chat';
 import { HideRoute } from './HideRoute';
 import { SigninPage } from '../../pages/signin';
 import { SignupPage } from '../../pages/signup';
@@ -20,6 +21,7 @@ export function Router() {
           }
         >
           <Route index element={<HomePage />} />
+          <Route path="chats/:chatId" element={<ChatPage />} />
         </Route>
         <Route element={<HideRoute />}>
           <Route path="signin" element={<SigninPage />} />
