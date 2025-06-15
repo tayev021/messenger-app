@@ -15,6 +15,7 @@ export function useUser() {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
+    staleTime: 10 * 60 * 1000,
   });
 
   return { isLoading, user, isError, error };
