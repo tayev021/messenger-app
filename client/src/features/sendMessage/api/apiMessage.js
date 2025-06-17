@@ -1,11 +1,17 @@
 import { API_URL } from '../../../shared/constants/constants';
 
-export async function sendMessage({ chatId, message }) {
+export async function sendMessage({ chatId, images, message }) {
+  const formData = new FormData();
+  formData.append('message', message);
+
+  for (let image of Array.from(images)) {
+    formData.append('image', image);
+  }
+
   const response = await fetch(`${API_URL}/chats/${chatId}/message`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
-    body: JSON.stringify({ message }),
+    body: formData,
   });
 
   const json = await response.json();

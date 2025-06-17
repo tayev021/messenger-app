@@ -9,7 +9,8 @@ export function useSendMessage() {
   const queryClient = useQueryClient();
 
   const { isLoading, mutate: sendMessage } = useMutation({
-    mutationFn: (message) => sendMessageAPI({ chatId, message }),
+    mutationFn: ({ images, message }) =>
+      sendMessageAPI({ chatId, images, message }),
     onSuccess: (chat) => {
       queryClient.setQueryData(['chat', chatId], chat);
     },
