@@ -1,3 +1,7 @@
+import multer from 'multer';
+import sharp from 'sharp';
+import uniqid from 'uniqid';
+
 import { Chat } from '../models/chatModelPlaceholder.js';
 import { Conversation } from '../models/conversationModelPlaceholder.js';
 import { User } from '../models/userModelPlaceholder.js';
@@ -25,12 +29,58 @@ export const getChat = catchAsyncError(async function (req, res, next) {
   });
 });
 
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, callback) => {
+  if (file.mimetype.startsWith('image')) {
+    callback(null, true);
+  } else {
+    callback(
+      new AppError('Not an image! Please upload only images.', 400),
+      false
+    );
+  }
+};
+
+export const uploadImages = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+}).array('image');
+
+export async function resizeImages(req, res, next) {
+  if (!req.files.length) return next();
+
+  const resizedImages = [];
+
+  for (let image of req.files) {
+    const resizedImage = await sharp(image.buffer)
+      .resize(500, 500, { fit: 'cover' })
+      .toFormat('jpg')
+      .toBuffer();
+
+    resizedImages.push(resizedImage);
+  }
+
+  req.files = resizedImages;
+
+  next();
+}
+
 export const createMessage = catchAsyncError(async function (req, res) {
+  const imageNames = req.files.map(
+    () => `${req.params.chatId}-${uniqid()}.jpg`
+  );
+
   const chat = await Chat.createMessage({
     chatId: req.params.chatId,
     user: req.user,
+    images: imageNames,
     message: req.body.message,
   });
+
+  for (let i = 0; i < req.files.length; i++) {
+    await sharp(req.files[i].buffer).toFile(`public/images/${imageNames[i]}`);
+  }
 
   Conversation.updateLastMessage({
     conversationId: req.params.chatId,
