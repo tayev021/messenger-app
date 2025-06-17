@@ -14,6 +14,7 @@ import { globalErrorHandler } from './controllers/errorController.js';
 const app = express();
 
 //MIDDLEWARES
+app.use(express.static('public'));
 app.use(cors({ origin: process.env.ORIGIN, credentials: true }));
 app.use(morgan('dev'));
 app.use(express.json()); // body parser
