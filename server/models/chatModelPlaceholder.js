@@ -7,11 +7,12 @@ class ChatModelPlaceholder {
     return JSON.parse(json);
   }
 
-  async createMessage({ chatId, user, message }) {
+  async createMessage({ chatId, user, images = [], message }) {
     const newMessage = {
       id: uniqid(),
       authorId: user.id,
       authorFullName: `${user.name} ${user.surname}`,
+      images,
       text: message,
       isWatched: [],
       timestamp: +new Date(),
