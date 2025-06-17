@@ -4,6 +4,7 @@ import { HiEye, HiOutlineClock } from 'react-icons/hi2';
 
 import { formatDateNumber } from '../../../shared/lib/utils/formatDateNumber';
 import { useWatchMessage } from '../lib/hooks/useWatchMessage';
+import { Images } from './Images';
 
 const StyledMessage = styled.li`
   width: 70%;
@@ -11,7 +12,7 @@ const StyledMessage = styled.li`
   max-width: 50rem;
   position: relative;
   right: 0;
-  padding: 0.8rem 1.6rem 0.4rem 1.2rem;
+  /* padding: 0.8rem 1.6rem 0.4rem 1.2rem; */
   border-radius: 1.2rem;
   box-shadow: var(--box-shadow-medium);
   transition: all 1s linear;
@@ -49,6 +50,7 @@ const StyledMessage = styled.li`
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
+  padding: 0.4rem 1.2rem;
 `;
 
 const Heading = styled.h5`
@@ -64,8 +66,8 @@ const Watched = styled(HiEye)`
     props.$isWatched ? 'var(--color-sky-600)' : 'var(--color-grey-200)'};
 `;
 
-const Main = styled.main`
-  margin: 0.2rem 1.4rem;
+const Text = styled.p`
+  margin: 0.2rem 2rem;
   font-size: 1.4rem;
 `;
 
@@ -73,6 +75,7 @@ const Footer = styled.footer`
   display: flex;
   justify-content: end;
   align-items: center;
+  padding: 0.4rem 1.2rem;
   color: var(--color-grey-600);
 
   svg {
@@ -125,12 +128,14 @@ export function Message({ message, userId }) {
         <Heading>{message.authorFullName}</Heading>
         {isMyMessage && <Watched $isWatched={isWatched} />}
       </Header>
-      <Main>{message.text}</Main>
+      <main>
+        <Images images={message.images} />
+        <Text>{message.text}</Text>
+      </main>
       <Footer>
         <HiOutlineClock />
         <Time>{getTime(message.timestamp)}</Time>
       </Footer>
-      {/* <TailIcon $isMyMessage={isMyMessage} $isWatched={isWatched} /> */}
     </StyledMessage>
   );
 }
