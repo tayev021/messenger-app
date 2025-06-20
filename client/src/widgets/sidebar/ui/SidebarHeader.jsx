@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { HiBars3 } from 'react-icons/hi2';
 
+import { ToggleShowUserPanel } from '../../../features/toggleShowUserPanel';
 import { SearchConversations } from '../../../features/searchConversations/';
 
 const Header = styled.header`
@@ -12,24 +13,12 @@ const Header = styled.header`
   box-shadow: var(--box-shadow-bottom-smallest);
 `;
 
-const MenuBox = styled.div`
-  width: 4.5rem;
-  display: flex;
-  justify-content: center;
-
-  svg {
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer;
-  }
-`;
-
 export function SidebarHeader() {
   return (
     <Header>
-      <MenuBox>
+      <ToggleShowUserPanel>
         <HiBars3 />
-      </MenuBox>
+      </ToggleShowUserPanel>
       <SearchConversations />
     </Header>
   );
