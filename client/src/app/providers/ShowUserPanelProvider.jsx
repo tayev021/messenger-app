@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ShowUserPanelContext } from '../../shared/lib/context/ShowUserPanelContext';
 
 export function ShowUserPanelProvider({ children }) {
-  const [isShowUserPanel, setIsShowUserPanel] = useState(true);
+  const [isShowUserPanel, setIsShowUserPanel] = useState(false);
 
   function toggleShowUserPanel() {
     setIsShowUserPanel((show) => !show);
