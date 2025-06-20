@@ -27,6 +27,22 @@ class UserModelPlaceholder {
     return await bcrypt.compare(password, encryptedPassword);
   }
 
+  async changePassword(id, newPassword) {
+    this.users[id].password = await bcrypt.hash(newPassword, 12);
+    this.save();
+  }
+
+  changeAvatar(id, avatarPath) {
+    if (this.users[id].avatar) {
+      fs.unlinkSync(`./public/avatars/${this.users[id].avatar}`);
+    }
+
+    this.users[id].avatar = avatarPath;
+    this.save();
+
+    return this.users[id];
+  }
+
   async create(userData) {
     if (Object.values(this.users).find((user) => user.email === userData.email))
       throw new AppError('This email already registered', 400);
