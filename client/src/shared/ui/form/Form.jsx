@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { Heading } from './Heading';
 import { Row } from './Row';
+import { Label } from './Label';
 import { Input } from './Input';
 import { Error } from './Error';
 import { Submit } from './Submit';
@@ -15,6 +16,13 @@ const StyledForm = styled.form`
   border-radius: 1rem;
   background-color: var(--color-grey-50);
   box-shadow: var(--box-shadow-medium);
+
+  ${(props) =>
+    props.type === 'inline' &&
+    `padding: 0;
+     border-radius: 0;
+     background-color: none;
+     box-shadow: none;`}
 `;
 
 export function Form({ children, ...props }) {
@@ -23,6 +31,7 @@ export function Form({ children, ...props }) {
 
 Form.Heading = Heading;
 Form.Row = Row;
+Form.Label = Label;
 Form.Input = Input;
 Form.Error = Error;
 Form.Submit = Submit;

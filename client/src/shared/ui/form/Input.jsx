@@ -7,6 +7,8 @@ export const Input = styled.input`
   border-radius: 99rem;
   box-shadow: var(--box-shadow-smallest);
 
+  ${(props) => props.type === 'file' && 'display: none;'}
+
   &::placeholder {
     color: var(--color-grey-400);
   }
