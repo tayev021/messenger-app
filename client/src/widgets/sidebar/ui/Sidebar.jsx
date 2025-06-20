@@ -7,7 +7,7 @@ import { useShowSidebarContext } from '../../../shared/lib/hooks/useShowSidebarC
 import { ConversationsList } from './conversations/ConversationsList';
 
 const StyledSidebar = styled.aside`
-  width: ${(props) => (props.$isShowSidebar ? '30rem' : '5.5rem')};
+  width: ${(props) => (props.$isShowSidebar ? '30rem' : '6rem')};
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;

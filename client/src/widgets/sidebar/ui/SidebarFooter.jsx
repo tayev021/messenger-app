@@ -6,7 +6,7 @@ const Footer = styled.footer`
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0.7rem;
   box-shadow: var(--box-shadow-top-smallest);
 
   svg {

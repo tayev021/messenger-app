@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router';
+import { ConversationAvatar } from './ConversationAvatar';
 
 const ListItem = styled.li`
   &:not(:last-child) {
@@ -21,7 +22,7 @@ const ListItem = styled.li`
 
 const StyledNavLink = styled(NavLink)`
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: max-content 1fr;
   gap: 1rem;
   padding: 0.5rem;
   cursor: pointer;
@@ -41,16 +42,8 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Avatar = styled.span`
-  width: 4.5rem;
-  height: 4.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid var(--color-grey-50);
-  border-radius: 50%;
-  color: var(--color-grey-50);
-  background-color: var(--color-sky-500);
+const ConversationBody = styled.div`
+  padding: 0.5rem 0;
 `;
 
 const Heading = styled.h5`
@@ -80,21 +73,23 @@ const LastMessage = styled.p`
 
 export function Conversation({ conversation }) {
   const { partnerName, partnerSurname, lastMessage } = conversation;
-  const avatarText = `${partnerName[0]}${partnerSurname[0]}`;
   const fullName = `${partnerName} ${partnerSurname}`;
   const unwatched = conversation.unwatched > 9 ? '9+' : conversation.unwatched;
 
   return (
     <ListItem>
       <StyledNavLink to={`chats/${conversation.id}`}>
-        <Avatar>{avatarText}</Avatar>
-        <div>
+        <ConversationAvatar
+          avatar={conversation.avatar}
+          text={`${partnerName[0]}${partnerSurname[0]}`}
+        />
+        <ConversationBody>
           <Heading>
             {fullName}
             {conversation.unwatched > 0 && <Unwatched>{unwatched}</Unwatched>}
           </Heading>
           <LastMessage>{lastMessage}</LastMessage>
-        </div>
+        </ConversationBody>
       </StyledNavLink>
     </ListItem>
   );

@@ -9,7 +9,7 @@ const Header = styled.header`
   grid-template-columns: min-content 1fr;
   gap: 1rem;
   align-items: center;
-  padding: 1rem 1.5rem 1rem 0.5rem;
+  padding: 1rem 1.5rem 1rem 0.7rem;
   box-shadow: var(--box-shadow-bottom-smallest);
 `;
 
