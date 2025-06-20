@@ -37,7 +37,7 @@ function sendToken(user, statusCode, res) {
   });
 }
 
-const signup = catchAsyncError(async function (req, res) {
+export const signup = catchAsyncError(async function (req, res) {
   const user = await User.create({
     name: req.body.name,
     surname: req.body.surname,
@@ -48,7 +48,7 @@ const signup = catchAsyncError(async function (req, res) {
   sendToken(user, 200, res);
 });
 
-const signin = catchAsyncError(async function (req, res, next) {
+export const signin = catchAsyncError(async function (req, res, next) {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -64,16 +64,16 @@ const signin = catchAsyncError(async function (req, res, next) {
   sendToken(user, 200, res);
 });
 
-const logout = catchAsyncError(async function (req, res) {
-  res.cookie('jwt', 'logged out', {
-    expires: new Date(Date.now() + 1000),
+export const signout = catchAsyncError(async function (req, res) {
+  res.cookie('jwt', 'sign out', {
+    expires: new Date(Date.now() + 1),
     httpOnly: true,
   });
 
   res.status(200).json({ status: 'success' });
 });
 
-const protect = catchAsyncError(async function (req, res, next) {
+export const protect = catchAsyncError(async function (req, res, next) {
   const token = req.cookies.jwt;
 
   if (!token) {
@@ -99,5 +99,3 @@ const protect = catchAsyncError(async function (req, res, next) {
 
   next();
 });
-
-export { signup, signin, logout, protect };
