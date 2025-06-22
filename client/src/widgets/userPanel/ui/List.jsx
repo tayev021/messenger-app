@@ -9,6 +9,7 @@ import {
 import { Modal } from '../../../shared/ui/modal';
 import { ChangeAvatar } from '../../../features/changeAvatar';
 import { ChangePassword } from '../../../features/changePassword';
+import { ToggleTheme } from '../../../features/toggleTheme';
 import { Signout } from '../../../features/signout';
 
 const StyledList = styled.ul``;
@@ -67,10 +68,7 @@ export function List() {
         </Modal>
       </ListItem>
       <ListItem>
-        <div>
-          <HiMoon />
-          <span>Dark Theme</span>
-        </div>
+        <ToggleTheme />
       </ListItem>
       <ListItem>
         <Signout>
