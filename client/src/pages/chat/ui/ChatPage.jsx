@@ -47,7 +47,7 @@ const Heading = styled.h3`
 `;
 
 const Footer = styled.footer`
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   border-left: 2px solid var(--color-grey-300);
   background-color: var(--color-grey-50);
   box-shadow: var(--box-shadow-top-small);

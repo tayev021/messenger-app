@@ -23,7 +23,7 @@ const ImagesLabel = styled.label`
   svg {
     width: 2.8rem;
     height: 2.8rem;
-    color: var(--color-grey-500);
+    color: var(--color-grey-600);
   }
 
   &:hover svg {
@@ -59,12 +59,13 @@ const Textarea = styled.textarea`
   border: none;
   border-bottom: 3px solid var(--color-grey-400);
   font-size: 1.4rem;
+  background-color: transparent;
   resize: none;
   overflow-y: auto;
   scrollbar-width: none;
 
   &::placeholder {
-    color: var(--color-grey-400);
+    color: var(--color-grey-600);
   }
 
   &:focus {

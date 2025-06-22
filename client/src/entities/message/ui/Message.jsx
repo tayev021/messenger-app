@@ -12,7 +12,6 @@ const StyledMessage = styled.li`
   max-width: 50rem;
   position: relative;
   right: 0;
-  /* padding: 0.8rem 1.6rem 0.4rem 1.2rem; */
   border-radius: 1.2rem;
   box-shadow: var(--box-shadow-medium);
   transition: all 1s linear;
@@ -67,7 +66,7 @@ const Watched = styled(HiEye)`
 `;
 
 const Text = styled.p`
-  margin: 0.2rem 2rem;
+  margin: 1rem 2rem 0.2rem;
   font-size: 1.4rem;
 `;
 
