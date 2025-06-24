@@ -9,7 +9,7 @@ import { AppError } from '../utils/AppError.js';
 import { catchAsyncError } from '../utils/catchAsyncError.js';
 
 export const getChat = catchAsyncError(async function (req, res, next) {
-  const chat = await Chat.findById(req.params.chatId);
+  const chat = Chat.findById(req.params.chatId);
 
   if (!chat) {
     return next(new AppError('No chat found with that ID', 404));
@@ -71,7 +71,7 @@ export const createMessage = catchAsyncError(async function (req, res) {
     () => `${req.params.chatId}-${uniqid()}.jpg`
   );
 
-  const chat = await Chat.createMessage({
+  const chat = Chat.createMessage({
     chatId: req.params.chatId,
     user: req.user,
     images: imageNames,
@@ -95,7 +95,7 @@ export const createMessage = catchAsyncError(async function (req, res) {
 });
 
 export const watchMessage = catchAsyncError(async function (req, res) {
-  const chat = await Chat.watchMessage({
+  const chat = Chat.watchMessage({
     chatId: req.params.chatId,
     messageId: req.params.messageId,
     user: req.user,

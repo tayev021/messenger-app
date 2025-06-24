@@ -1,13 +1,13 @@
-import * as fs from 'node:fs/promises';
+import * as fs from 'node:fs';
 import uniqid from 'uniqid';
 
 class ChatModelPlaceholder {
-  async findById(id) {
-    const json = await fs.readFile(`./data/chats/chat-${id}.json`, 'utf8');
+  findById(id) {
+    const json = fs.readFileSync(`./data/chats/chat-${id}.json`, 'utf8');
     return JSON.parse(json);
   }
 
-  async createMessage({ chatId, user, images = [], message }) {
+  createMessage({ chatId, user, images = [], message }) {
     const newMessage = {
       id: uniqid(),
       authorId: user.id,
@@ -18,31 +18,26 @@ class ChatModelPlaceholder {
       timestamp: +new Date(),
     };
 
-    const json = await fs.readFile(`./data/chats/chat-${chatId}.json`, 'utf8');
+    const json = fs.readFileSync(`./data/chats/chat-${chatId}.json`, 'utf8');
     const chat = JSON.parse(json);
 
     chat.messages.push(newMessage);
 
-    await fs.writeFile(
-      `./data/chats/chat-${chatId}.json`,
-      JSON.stringify(chat),
-      'utf8'
-    );
+    fs.writeFileSync(`./data/chats/chat-${chatId}.json`, JSON.stringify(chat));
 
     return chat;
   }
 
-  async watchMessage({ chatId, messageId, user }) {
-    const json = await fs.readFile(`./data/chats/chat-${chatId}.json`, 'utf8');
+  watchMessage({ chatId, messageId, user }) {
+    const json = fs.readFileSync(`./data/chats/chat-${chatId}.json`, 'utf8');
     const chat = JSON.parse(json);
     const message = chat.messages.find((message) => message.id === messageId);
+
+    if (message.isWatched.includes(user.id)) return chat;
+
     message.isWatched.push(user.id);
 
-    await fs.writeFile(
-      `./data/chats/chat-${chatId}.json`,
-      JSON.stringify(chat),
-      'utf8'
-    );
+    fs.writeFileSync(`./data/chats/chat-${chatId}.json`, JSON.stringify(chat));
 
     return chat;
   }
