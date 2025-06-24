@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
+import { useLocalStorageState } from '../../shared/lib/hooks/useLocalStorageState';
 import { ThemeContext } from 'styled-components';
 
 export function ThemeProvider({ children }) {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useLocalStorageState(false, 'theme');
 
   useEffect(
     function () {
