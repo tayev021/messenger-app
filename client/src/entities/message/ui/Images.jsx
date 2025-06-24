@@ -11,6 +11,7 @@ const ImagesContainer = styled.div`
   img {
     width: 0;
     flex: 1 1 20%;
+    aspect-ratio: 1;
 
     &:nth-child(1),
     &:nth-child(2) {
