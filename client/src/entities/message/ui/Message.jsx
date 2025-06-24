@@ -96,7 +96,7 @@ function getTime(timestamp) {
   return `${hours}:${minutes}`;
 }
 
-export function Message({ message, userId }) {
+export function Message({ message, userId, refFirstUnwatched = null }) {
   const refMessage = useRef();
   const { watchMessage } = useWatchMessage();
 
@@ -106,15 +106,23 @@ export function Message({ message, userId }) {
   useEffect(
     function () {
       if (!isMyMessage && !isWatched) {
-        const observer = new IntersectionObserver(
-          () => setTimeout(() => watchMessage(message.id), 1000),
-          { threshold: 1.0 }
-        );
+        const current = refMessage?.current;
 
-        observer.observe(refMessage.current);
+        if (current) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              if (entries[0].isIntersecting) watchMessage(message.id);
+            },
+            { threshold: 1 }
+          );
+
+          observer.observe(current);
+
+          return () => observer.unobserve(current);
+        }
       }
     },
-    [isMyMessage, isWatched, message.id, watchMessage]
+    [isMyMessage, isWatched, message, refMessage, watchMessage]
   );
 
   return (
@@ -123,7 +131,7 @@ export function Message({ message, userId }) {
       $isMyMessage={isMyMessage}
       $isWatched={isWatched}
     >
-      <Header>
+      <Header ref={refFirstUnwatched}>
         <Heading>{message.authorFullName}</Heading>
         {isMyMessage && <Watched $isWatched={isWatched} />}
       </Header>
