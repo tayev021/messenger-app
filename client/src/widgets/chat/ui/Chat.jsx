@@ -23,43 +23,61 @@ const MessagesList = styled.ul`
 `;
 
 export function Chat() {
-  const refMessagesList = useRef();
+  const refFirstUnwatched = useRef();
+  const refEnd = useRef();
   const { user } = useUser();
   const {
     chat: { messages = [] },
   } = useChat();
 
   const messagesList = [];
+  let firstUnwatched = null;
   let previousDay = null;
 
   useEffect(
     function () {
-      if (refMessagesList.current)
-        refMessagesList.current.scrollTop =
-          refMessagesList.current.scrollHeight;
+      if (refFirstUnwatched?.current) {
+        refFirstUnwatched.current?.scrollIntoView(false);
+      } else if (refEnd?.current) {
+        refEnd.current?.scrollIntoView(false);
+      }
     },
     [messages.length]
   );
 
-  for (let i = 0; i < messages.length; i++) {
-    const message = messages[i];
-    let isNewDay = false;
-
+  for (let message of messages) {
     if (!previousDay || isNewDate(previousDay, message.timestamp)) {
-      isNewDay = true;
-      previousDay = message.timestamp;
-    }
-
-    if (isNewDay) {
       messagesList.push(
         <DateLabel timestamp={message.timestamp} key={message.timestamp} />
       );
+
+      previousDay = message.timestamp;
+    }
+
+    if (
+      !firstUnwatched &&
+      message.authorId !== user.id &&
+      !message.isWatched.includes(user.id)
+    ) {
+      firstUnwatched = message.id;
     }
 
     messagesList.push(
-      <Message message={message} userId={user.id} key={message.id} />
+      <Message
+        message={message}
+        userId={user.id}
+        key={message.id}
+        refFirstUnwatched={
+          firstUnwatched === message.id ? refFirstUnwatched : null
+        }
+      />
     );
   }
 
-  return <MessagesList ref={refMessagesList}>{messagesList}</MessagesList>;
+  return (
+    <MessagesList>
+      {messagesList}
+      <div ref={refEnd}></div>
+    </MessagesList>
+  );
 }
