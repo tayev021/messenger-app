@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useConversations } from '../../../../shared/lib/hooks/useConversations';
 import { Spinner } from '../../../../shared/ui/Spinner';
 import { Conversation } from './Conversation';
+import { NewConversation } from './NewConversation';
 
 const List = styled.ul`
   height: 100%;
@@ -16,11 +17,11 @@ export function ConversationsList() {
 
   if (isLoading) return <Spinner />;
 
-  return (
-    <List>
-      {conversations.map((conversation) => (
-        <Conversation conversation={conversation} key={conversation.id} />
-      ))}
-    </List>
-  );
+  const list = conversations.map((conversation) => (
+    <Conversation conversation={conversation} key={conversation.id} />
+  ));
+
+  list.push(<NewConversation key="new-conversation" />);
+
+  return <List>{list}</List>;
 }
