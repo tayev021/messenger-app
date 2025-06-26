@@ -1,7 +1,8 @@
 import { Conversation } from '../models/conversationModelPlaceholder.js';
 import { User } from '../models/userModelPlaceholder.js';
+import { Chat } from '../models/chatModelPlaceholder.js';
 
-function getConversations(req, res) {
+export function getConversations(req, res) {
   const user = req.user;
 
   const conversations = user.conversations.map((id) => {
@@ -26,4 +27,23 @@ function getConversations(req, res) {
   });
 }
 
-export { getConversations };
+export function startConversation(req, res) {
+  const user = req.user;
+  const partnerId = req.body.partnerId;
+
+  const newConversation = Conversation.create({
+    usersId: [user.id, partnerId],
+  });
+
+  Chat.create({ chatId: newConversation.id, usersId: [user.id, partnerId] });
+  User.addConversation({ userId: user.id, conversationId: newConversation.id });
+  User.addConversation({
+    userId: partnerId,
+    conversationId: newConversation.id,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    data: { chatId: newConversation.id },
+  });
+}
