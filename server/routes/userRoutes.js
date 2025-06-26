@@ -12,6 +12,7 @@ import {
   changeAvatar,
   changePassword,
   getMe,
+  getPartners,
 } from '../controllers/userController.js';
 
 const userRouter = express.Router();
@@ -25,5 +26,7 @@ userRouter.route('/password').patch(protect, changePassword);
 userRouter
   .route('/avatar')
   .patch(protect, uploadAvatar, resizeAvatar, changeAvatar);
+
+userRouter.route('/partners').post(protect, getPartners);
 
 export { userRouter };
