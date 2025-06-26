@@ -14,6 +14,10 @@ class UserModelPlaceholder {
     this.users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
   }
 
+  getAll() {
+    return Object.values(JSON.parse(JSON.stringify(this.users)));
+  }
+
   findById(id) {
     return { ...this.users[id] };
   }
@@ -43,6 +47,11 @@ class UserModelPlaceholder {
     return this.users[id];
   }
 
+  addConversation({ userId, conversationId }) {
+    this.users[userId].conversations.push(conversationId);
+    this.save();
+  }
+
   async create(userData) {
     if (Object.values(this.users).find((user) => user.email === userData.email))
       throw new AppError('This email already registered', 400);
@@ -56,6 +65,8 @@ class UserModelPlaceholder {
       surname: `${userData.surname[0].toUpperCase()}${userData.surname.slice(1)}`,
       email: userData.email,
       password: await bcrypt.hash(userData.password, 12),
+      avatar: '',
+      conversations: [],
     };
 
     this.users[id] = newUser;
