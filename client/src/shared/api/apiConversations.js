@@ -14,3 +14,22 @@ export async function getConversations() {
 
   return json.data.conversations;
 }
+
+export async function startConversation({ partnerId }) {
+  const response = await fetch(`${API_URL}/conversations`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ partnerId }),
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  const chatId = json.data.chatId;
+
+  return chatId;
+}
