@@ -12,12 +12,19 @@ class ConversationModelPlaceholder {
     return this.conversations[id];
   }
 
-  create({ users, lastMessage }) {
+  create({ usersId }) {
     const id = uniqid();
+    const unwatched = {};
+
+    for (let id of usersId) {
+      unwatched[id] = 0;
+    }
+
     const newConversation = {
       id,
-      users,
-      lastMessage,
+      users: usersId,
+      unwatched,
+      lastMessage: '',
     };
 
     this.conversations[id] = newConversation;
@@ -48,12 +55,26 @@ class ConversationModelPlaceholder {
   }
 
   watchMessage({ conversationId, user }) {
-    if (this.conversations[conversationId].unwatched[user.id] <= 0) return;
+    if (this.conversations[conversationId].unwatched[user.id] > 0)
+      this.conversations[conversationId].unwatched[user.id]--;
 
-    this.conversations[conversationId].unwatched[user.id]--;
     this.save();
 
     return this.conversations[conversationId];
+  }
+
+  getCurrentPartners(user) {
+    const currentPartners = [];
+
+    for (let conversationId of user.conversations) {
+      currentPartners.push(
+        ...this.conversations[conversationId].users.filter(
+          (id) => id !== user.id
+        )
+      );
+    }
+
+    return currentPartners;
   }
 
   save() {
