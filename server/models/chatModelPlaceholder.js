@@ -7,6 +7,18 @@ class ChatModelPlaceholder {
     return JSON.parse(json);
   }
 
+  create({ chatId, usersId }) {
+    const newChat = {
+      users: usersId,
+      messages: [],
+    };
+
+    fs.writeFileSync(
+      `./data/chats/chat-${chatId}.json`,
+      JSON.stringify(newChat)
+    );
+  }
+
   createMessage({ chatId, user, images = [], message }) {
     const newMessage = {
       id: uniqid(),
