@@ -5,6 +5,7 @@ import uniqid from 'uniqid';
 import { catchAsyncError } from '../utils/catchAsyncError.js';
 import { AppError } from '../utils/AppError.js';
 import { User } from '../models/userModelPlaceholder.js';
+import { Conversation } from '../models/conversationModelPlaceholder.js';
 
 export const getMe = catchAsyncError(async function (req, res, next) {
   const user = req.user;
@@ -85,5 +86,29 @@ export const changeAvatar = catchAsyncError(async function (req, res, next) {
   res.status(200).json({
     status: 'success',
     data: { user },
+  });
+});
+
+export const getPartners = catchAsyncError(async function (req, res) {
+  const search = req.body.search.toLowerCase();
+  const currentUser = req.user;
+
+  const currentPartners = Conversation.getCurrentPartners(currentUser);
+  const partners = User.getAll()
+    .map((user) => ({
+      id: user.id,
+      fullName: `${user.name} ${user.surname}`.toLowerCase(),
+      avatar: user.avatar,
+    }))
+    .filter(
+      (user) =>
+        user.id !== currentUser.id &&
+        user.fullName.includes(search) &&
+        !currentPartners.includes(user.id)
+    );
+
+  res.status(200).json({
+    status: 'success',
+    data: { partners },
   });
 });
