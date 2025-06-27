@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 export function useSignout() {
   const queryClient = useQueryClient();
 
-  const { isLoading, mutate: signout } = useMutation({
+  const { isPending: isLoading, mutate: signout } = useMutation({
     mutationFn: signoutAPI,
     onSuccess: () => {
       queryClient.setQueryData(['user'], null);

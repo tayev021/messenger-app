@@ -8,7 +8,7 @@ export function useSignup() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { isLoading, mutate: signup } = useMutation({
+  const { isPending: isLoading, mutate: signup } = useMutation({
     mutationFn: signupAPI,
     onSuccess: (user) => {
       queryClient.setQueryData(['user'], user);

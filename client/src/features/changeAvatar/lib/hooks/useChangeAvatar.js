@@ -7,7 +7,7 @@ export function useChangeAvatar() {
   const queryClient = useQueryClient();
 
   const {
-    isLoading,
+    isPending: isLoading,
     isSuccess,
     mutate: changeAvatar,
   } = useMutation({

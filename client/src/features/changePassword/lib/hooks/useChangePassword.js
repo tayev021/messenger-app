@@ -6,7 +6,7 @@ import { changePassword as changePasswordAPI } from '../../api/apiPassword';
 export function useChangePassword() {
   const queryClient = useQueryClient();
 
-  const { isLoading, mutate: changePassword } = useMutation({
+  const { isPending: isLoading, mutate: changePassword } = useMutation({
     mutationFn: changePasswordAPI,
     onSuccess: () => {
       toast.success(
