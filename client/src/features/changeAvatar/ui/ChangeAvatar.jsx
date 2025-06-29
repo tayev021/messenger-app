@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useChangeAvatar } from '../lib/hooks/useChangeAvatar';
 import { Form } from '../../../shared/ui/form/Form';
-import { UserAvatar } from '../../../shared/ui/UserAvatar';
+import { UserAvatar } from '../../../entities/user/';
 
 export function ChangeAvatar({ closeModal }) {
   const [image, setImage] = useState(null);
@@ -27,7 +27,10 @@ export function ChangeAvatar({ closeModal }) {
     <Form type="inline" onSubmit={handleSubmit}>
       <Form.Heading>Change avatar</Form.Heading>
       <Form.Row>
-        <UserAvatar type="inline" image={image && URL.createObjectURL(image)} />
+        <UserAvatar
+          imageSrc={image && URL.createObjectURL(image)}
+          type="inline"
+        />
       </Form.Row>
       <Form.Row>
         <Form.Label htmlFor="avatar">Choose image</Form.Label>

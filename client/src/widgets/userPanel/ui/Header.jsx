@@ -2,8 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { HiXMark } from 'react-icons/hi2';
 
 import { ToggleShowUserPanel } from '../../../features/toggleShowUserPanel';
-import { UserAvatar } from '../../../shared/ui/UserAvatar';
-import { useUser } from '../../../shared/lib/hooks/useUser';
+import { UserAvatar, useUser } from '../../../entities/user/';
 
 const StyledHeader = styled.header`
   margin-bottom: 4rem;

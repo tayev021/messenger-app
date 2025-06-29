@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 import { Spinner } from '../../../shared/ui/Spinner';
 import { URL } from '../../../shared/constants/constants';
 import { usePartnersContext } from '../lib/hooks/usePartnersContext';
 import { useModalContext } from '../../../shared/lib/hooks/useModalContext';
-import { useEffect } from 'react';
+import { Avatar } from '../../../shared/ui/Avatar';
 
 const List = styled.ul`
   height: 45rem;
@@ -24,7 +25,8 @@ const TextItem = styled.li`
 
 const Item = styled.li`
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: max-content 1fr;
   align-items: center;
   gap: 2rem;
   padding: 0.8rem 1.6rem;
@@ -38,26 +40,6 @@ const Item = styled.li`
   &:hover {
     background-color: var(--color-grey-200);
   }
-`;
-
-const Avatar = styled.img`
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-`;
-
-const AvatarPlaceholder = styled.div`
-  width: 5rem;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--color-grey-50);
-  background-color: var(--color-sky-500);
 `;
 
 const Fullname = styled.h5`
@@ -104,24 +86,30 @@ export function PartnersList({ isSuccess, startConversationWith }) {
   return (
     <List>
       {partners?.length &&
-        partners.map((partner) => (
-          <Item
-            key={partner.id}
-            onClick={() => startConversationWith(partner.id)}
-          >
-            {partner.avatar ? (
-              <Avatar src={`${URL}/avatars/${partner.avatar}`} />
-            ) : (
-              <AvatarPlaceholder>
-                {partner.fullName
-                  .split(' ')
-                  .map((word) => word[0])
-                  .join('')}
-              </AvatarPlaceholder>
-            )}
-            <Fullname>{partner.fullName}</Fullname>
-          </Item>
-        ))}
+        partners.map((partner) => {
+          const partnerAvatarSrc = partner.avatar
+            ? `${URL}/avatars/${partner.avatar}`
+            : '';
+          const partnerInitials = partner.fullName
+            .split(' ')
+            .map((word) => word[0])
+            .join('');
+
+          return (
+            <Item
+              key={partner.id}
+              onClick={() => startConversationWith(partner.id)}
+            >
+              <Avatar
+                imageSrc={partnerAvatarSrc}
+                initials={partnerInitials}
+                type="inline"
+                size="small"
+              />
+              <Fullname>{partner.fullName}</Fullname>
+            </Item>
+          );
+        })}
     </List>
   );
 }

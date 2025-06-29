@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+
 import { NavLink } from 'react-router';
-import { ConversationAvatar } from './ConversationAvatar';
+import { URL } from '../../../../shared/constants/constants';
+import { Avatar } from '../../../../shared/ui/Avatar';
 
 const ListItem = styled.li`
   &:not(:last-child) {
@@ -74,14 +76,20 @@ const LastMessage = styled.p`
 export function Conversation({ conversation }) {
   const { partnerName, partnerSurname, lastMessage } = conversation;
   const fullName = `${partnerName} ${partnerSurname}`;
+  const partnerInitials = partnerName[0] + partnerSurname[0];
+  const conversationAvatar = conversation.avatar
+    ? `${URL}/avatars/${conversation.avatar}`
+    : '';
   const unwatched = conversation.unwatched > 9 ? '9+' : conversation.unwatched;
 
   return (
     <ListItem>
       <StyledNavLink to={`chats/${conversation.id}`}>
-        <ConversationAvatar
-          avatar={conversation.avatar}
-          text={`${partnerName[0]}${partnerSurname[0]}`}
+        <Avatar
+          imageSrc={conversationAvatar}
+          initials={partnerInitials}
+          type="inline"
+          size="small"
         />
         <ConversationBody>
           <Heading>
