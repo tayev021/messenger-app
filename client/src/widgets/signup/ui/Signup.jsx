@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { TbLetterN, TbLetterS } from 'react-icons/tb';
 import { HiOutlineEnvelope, HiOutlineLockClosed } from 'react-icons/hi2';
 
-import { useSignup } from '../lib/hooks/useSignup';
+import { useSignup } from '../../../entities/user';
 import { validateName } from '../lib/helpers/validateName';
 import { validateEmail } from '../lib/helpers/validateEmail';
 import { validatePassword } from '../lib/helpers/validatePassword';

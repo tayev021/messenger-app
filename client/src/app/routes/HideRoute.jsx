@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useUser } from '../../shared/lib/hooks/useUser';
 import { Outlet, useNavigate } from 'react-router';
 
+import { useUser } from '../../entities/user/';
 import { Spinner } from '../../shared/ui/Spinner';
 
 export function HideRoute() {

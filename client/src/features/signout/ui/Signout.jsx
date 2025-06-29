@@ -1,4 +1,4 @@
-import { useSignout } from '../lib/hooks/useSignout';
+import { useSignout } from '../../../entities/user';
 
 export function Signout({ children }) {
   const { signout } = useSignout();

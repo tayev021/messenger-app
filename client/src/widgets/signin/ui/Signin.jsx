@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { HiOutlineEnvelope, HiOutlineLockClosed } from 'react-icons/hi2';
 
-import { useSignin } from '../lib/hooks/useSignin';
+import { useSignin } from '../../../entities/user';
 import { Form } from '../../../shared/ui/form';
 
 export function Signin() {

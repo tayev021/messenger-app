@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useEffect, useRef } from 'react';
 
 import { useChat } from '../../../shared/lib/hooks/useChat';
-import { useUser } from '../../../shared/lib/hooks/useUser';
+import { useUser } from '../../../entities/user';
 import { isNewDate } from '../../../shared/lib/utils/isNewDate';
 import { DateLabel } from './DateLabel';
 import { Message } from '../../../entities/message/ui/Message';

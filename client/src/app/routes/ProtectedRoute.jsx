@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
-import { useUser } from '../../shared/lib/hooks/useUser';
+import { useUser } from '../../entities/user/';
 import { PageLoading } from '../../pages/pageLoading';
 
 export function ProtectedRoute({ children }) {
