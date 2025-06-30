@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { useEffect, useRef } from 'react';
 import { HiEye, HiOutlineClock } from 'react-icons/hi2';
 
-import { formatDateNumber } from '../../../shared/lib/utils/formatDateNumber';
 import { useWatchMessage } from '../lib/hooks/useWatchMessage';
 import { Images } from './Images';
+import { getTime } from '../lib/utils/getTime';
 
 const StyledMessage = styled.li`
   width: 70%;
@@ -88,14 +88,6 @@ const Time = styled.div`
   font-size: 1.1rem;
 `;
 
-function getTime(timestamp) {
-  const date = new Date(timestamp);
-  const hours = formatDateNumber(date.getHours());
-  const minutes = formatDateNumber(date.getMinutes());
-
-  return `${hours}:${minutes}`;
-}
-
 export function Message({ message, userId, refFirstUnwatched = null }) {
   const refMessage = useRef();
   const { watchMessage } = useWatchMessage();
@@ -137,7 +129,7 @@ export function Message({ message, userId, refFirstUnwatched = null }) {
       </Header>
       <main>
         <Images images={message.images} />
-        <Text>{message.text}</Text>
+        {message.text && <Text>{message.text}</Text>}
       </main>
       <Footer>
         <HiOutlineClock />
