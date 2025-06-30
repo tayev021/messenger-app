@@ -132,7 +132,7 @@ export function SendMessage() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (message.length > 0) {
+    if (images.length || message.length) {
       sendMessage({ images: [...images], message });
       setMessage('');
       setImages([]);
