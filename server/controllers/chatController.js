@@ -82,10 +82,14 @@ export const createMessage = catchAsyncError(async function (req, res) {
     await sharp(req.files[i].buffer).toFile(`public/images/${imageNames[i]}`);
   }
 
+  const imagesNum =
+    imageNames.length > 0 ? `images [${imageNames.length}]` : '';
+  const lastMessage = `${imagesNum} ${req.body.message}`;
+
   Conversation.updateLastMessage({
     conversationId: req.params.chatId,
     user: req.user,
-    message: req.body.message,
+    message: lastMessage,
   });
 
   res.status(200).json({
