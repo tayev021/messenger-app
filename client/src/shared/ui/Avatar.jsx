@@ -18,7 +18,8 @@ const AvatarPlaceholder = styled.div`
   ${(props) => props.type === 'inline' && 'margin: 0 auto;'}
   ${(props) =>
     props.size === 'small' &&
-    'width: 5rem; height: 5rem; font-size: 1.6rem; letter-spacing: 0rem;'}
+    'width: 5rem; height: 5rem; font-size: 1.6rem; letter-spacing: 0rem;'} 
+  ${(props) => props.$border && 'border: 2px solid var(--color-grey-50);'}
 `;
 
 const StyledAvatar = styled.img`
@@ -30,17 +31,26 @@ const StyledAvatar = styled.img`
   object-fit: cover;
 
   ${(props) => props.type === 'inline' && 'margin: 0 auto;'}
-  ${(props) => props.size === 'small' && 'width: 5rem; height: 5rem;'}
+  ${(props) => props.size === 'small' && 'width: 5rem; height: 5rem;'} 
+  ${(props) => props.$border && 'border: 2px solid var(--color-grey-50);'}
 `;
 
-export function Avatar({ imageSrc = '', initials = '', type = '', size = '' }) {
+export function Avatar({
+  imageSrc = '',
+  initials = '',
+  type = '',
+  size = '',
+  border = false,
+}) {
   if (!imageSrc) {
     return (
-      <AvatarPlaceholder type={type} size={size}>
+      <AvatarPlaceholder type={type} size={size} $border={border}>
         {initials}
       </AvatarPlaceholder>
     );
   }
 
-  return <StyledAvatar src={imageSrc} type={type} size={size} />;
+  return (
+    <StyledAvatar src={imageSrc} type={type} size={size} $border={border} />
+  );
 }
