@@ -90,6 +90,7 @@ export function Conversation({ conversation }) {
           initials={partnerInitials}
           type="inline"
           size="small"
+          border={true}
         />
         <ConversationBody>
           <Heading>
