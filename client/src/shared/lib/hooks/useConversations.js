@@ -7,6 +7,7 @@ export function useConversations() {
   const { isLoading, data: conversations } = useQuery({
     queryKey: ['conversations'],
     queryFn: getConversations,
+    refetchInterval: 5000,
   });
   const { search } = useSearchConversationsContext();
 
