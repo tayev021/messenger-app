@@ -1,0 +1,50 @@
+{
+  "users": ["7xjwpj6s8mbl6gwn1", "7xjwpj86smcbribnu"],
+  "messages": [
+    {
+      "id": "7xjwpjjombtpkvg6",
+      "authorId": "7xjwpj6s8mbl6gwn1",
+      "authorFullName": "Eugene Taranov",
+      "images": [],
+      "text": "test 123",
+      "isWatched": ["7xjwpj86smcbribnu"],
+      "timestamp": 1749752699189
+    },
+    {
+      "id": "7xjwpj6u4mbtplm9j",
+      "authorId": "7xjwpj6s8mbl6gwn1",
+      "authorFullName": "Eugene Taranov",
+      "images": [],
+      "text": "another test\nwith 2 lines",
+      "isWatched": ["7xjwpj86smcbribnu"],
+      "timestamp": 1749752733942
+    },
+    {
+      "id": "7xjwpj77smbtpr96l",
+      "authorId": "7xjwpj86smcbribnu",
+      "authorFullName": "Anna Brook",
+      "images": [],
+      "text": "this message from Anna Brook",
+      "isWatched": ["7xjwpj6s8mbl6gwn1"],
+      "timestamp": 1749752996924
+    },
+    {
+      "id": "7xjwpj3ygmbv7tj47",
+      "authorId": "7xjwpj6s8mbl6gwn1",
+      "authorFullName": "Eugene Taranov",
+      "images": [],
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "isWatched": ["7xjwpj86smcbribnu"],
+      "timestamp": 1749843802374
+    },
+    {
+      "id": "7xjwpj7csmcj6mcr2",
+      "authorId": "7xjwpj86smcbribnu",
+      "authorFullName": "Anna Brook",
+      "images": ["7xjwpj9r0mcd3kt86-7xjwpj7csmcj6mcr1.jpg"],
+      "text": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "isWatched": ["7xjwpj6s8mbl6gwn1"],
+      "timestamp": 1751292976140
+    }
+  ]
+}
