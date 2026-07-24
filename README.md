@@ -1,50 +1,50 @@
 # Messenger App
 
-## Содержание
+## Table of Contents
 
 - [Messenger App](#messenger-app)
-  - [Содержание](#содержание)
-  - [О проекте](#о-проекте)
-    - [Цели проекта](#цели-проекта)
-    - [Технологии](#технологии)
-    - [Структура проекта](#структура-проекта)
-      - [Клиент](#клиент)
-      - [Сервер](#сервер)
-    - [Примеры работы (скриншоты)](#примеры-работы-скриншоты)
-  - [Установка](#установка)
-    - [Клиент](#клиент-1)
-    - [Сервер](#сервер-1)
-  - [Использование](#использование)
-    - [Запуск сервера](#запуск-сервера)
-    - [Клиент](#клиент-2)
+  - [Table of Contents](#table-of-contents)
+  - [About the Project](#about-the-project)
+    - [Project Goals](#project-goals)
+    - [Technologies](#technologies)
+    - [Project structure](#project-structure)
+      - [Client](#client)
+      - [Server](#server)
+    - [Examples of the Application (GIFs and Screenshots)](#examples-of-the-application-gifs-and-screenshots)
+  - [Installation](#installation)
+    - [Client](#client-1)
+    - [Server](#server-1)
+  - [Usage](#usage)
+    - [Start the server](#start-the-server)
+    - [Client](#client-2)
 
-## О проекте
+## About the Project
 
-Приложение "Messenger" предоставляет пользователям возможность искать новых собеседников, обмениваться с ними текстовыми сообщениями и прикреплять к ним фотографии.
+Messenger is a messaging application that allows users to discover new people, exchange text messages, and attach photos to their messages.
 
-Это первая попытка использовать архитектуру FSD (Feature-Sliced Design) в крупном проекте.
+This project is my first attempt at applying the Feature-Sliced Design (FSD) architecture.
 
-### Цели проекта
+### Project Goals
 
-Закрепление опыта разработки приложений с использованием нескольких самых популярных React-библиотек.
+- Strengthen my experience building applications with several of the most popular React libraries.
+- Gain experience organizing a project using the Feature-Sliced Design (FSD) architecture.
+- Practice writing reusable and maintainable UI components.
 
-Получить опыт разработки крупного проекта на основе архитектуры FSD.
-
-### Технологии
+### Technologies
 
 Client:
 
-- React (Hooks, Context API, Portal и др.)
-- React библиотеки:
+- React (Hooks, Context API, Portal)
+- React libraries:
   - React Router (Declarative mode)
   - React Query (TanStack Query)
   - Styled Components (CSS-in-JS)
   - React Hook Form
   - React Hot Toast
   - React Icons
-- Архитектура: Feature-Sliced Design
-- Инструмент сборки: Vite
-- IDE: ESLint, Prettier
+- Architecture: Feature-Sliced Design
+- Vite
+- ESLint, Prettier
 
 Server:
 
@@ -52,9 +52,9 @@ Server:
 - Express.js
 - JSON Web Token
 
-### Структура проекта
+### Project structure
 
-#### Клиент
+#### Client
 
 ```
 └───client
@@ -107,7 +107,7 @@ Server:
     └───index.html
 ```
 
-#### Сервер
+#### Server
 
 ```
 └───server
@@ -122,106 +122,106 @@ Server:
 
 ```
 
-### Примеры работы (скриншоты)
+### Examples of the Application (GIFs and Screenshots)
 
-Страницы входа и регистрации с валидацией на стороне клиента и сервера, после успешной регистрации вход в приложение:
+Login and registration pages with client-side and server-side validation:
 
 ![](readme-assets/signup.gif)
 
-На панели пользователя можно сменить фото, пароль, тему приложения и выйти из аккаунта. Пример смены аватара пользователя:
+User settings panel. Changing the profile picture, password, application theme, and signing out. Example of updating the user avatar:
 
 ![](readme-assets/change-avatar.gif)
 
-Поиск нового собеседника и начало диалога:
+Searching for a new contact and starting a conversation:
 
 ![](readme-assets/start-chat.gif)
 
-На странице диалога можно отправить текстовое сообщение, сообщение с фото или отдельно картинки. На странице сообщение отображает автора, содержимое, время отправки и статус прочтения собеседником. Пример отправки сообщений:
+Conversation page. Sending text messages, messages with photos, or photos only. Each message displays the sender, content, timestamp, and whether it has been read. Example of sending messages:
 
 ![](readme-assets/first-message.gif)
 
-Выход из аккаунта:
+Signing out:
 
 ![](readme-assets/signout.gif)
 
-Вход в аккаунт:
+Signing in:
 
 ![](readme-assets/signin.gif)
 
-На боковой панели отображается список текущих диалогов. Доступен поиск диалога по имени собеседника.
+Sidebar with the list of conversations. Search conversations by contact name:
 
 ![](readme-assets/home.png)
 
-Каждый диалог отображает автора, сокращенное последнее сообщение, количество непрочитанных сообщений в диалоге.
+Each conversation displays the contact, the last message preview, and the number of unread messages:
 
 ![](readme-assets/conversations.png)
 
-При открытии страницы диалога, список сообщений прокручивается до последнего сообщения или первого непрочитанного, если оно есть.
+When a conversation is opened, the message list automatically scrolls to the latest message or the first unread message, if available:
 
 ![](readme-assets/chat-scroll.gif)
 
-Непрочитанное сообщение при просмотре изменяет свой статус на прочитанное.
+Unread messages are automatically marked as read when viewed:
 
 ![](readme-assets/message-observer.gif)
 
-Отправитель видит, если его сообщение прочитали.
+The sender can see when their messages have been read:
 
 ![](readme-assets/message-watched.png)
 
-Переключение приложения на темную тему:
+Switching to the dark theme:
 
 ![](readme-assets/dark-theme.gif)
 
-## Установка
+## Installation
 
-### Клиент
+### Client
 
-Перейти в папку `client` из корня проекта:
+Navigate to the `client` directory from the project root:
 
 ```
 cd client
 ```
 
-Для установки зависимостей:
+Install the dependencies:
 
 ```
 npm i
 ```
 
-### Сервер
+### Server
 
-Перейти в папку `server` из корня проекта:
+Navigate to the `server` directory from the project root:
 
 ```
 cd server
 ```
 
-Для установки зависимостей:
+Install the dependencies:
 
 ```
 npm i
 ```
 
-## Использование
+## Usage
 
-### Запуск сервера
+### Start the server
 
-Перейти в папку `server` из корня проекта. Запустить сервер:
+Navigate to the `server` directory from the project root and run:
 
 ```
 npm start
 ```
 
 > [!TIP]
-> По умолчанию адрес для доступа `localhost:3000`
+> By default, the server is available at `http://localhost:3000`
 
-### Клиент
+### Client
 
-Перейти в папку `client` из корня проекта. Выполнить:
+Navigate to the `client` directory from the project root and run:
 
 ```
 npm run dev
 ```
 
 > [!TIP]
-> По умолчанию в браузере можно открыть по адресу `localhost:5173`
+> By default, the application is available at `http://localhost:5173` in your browser.
